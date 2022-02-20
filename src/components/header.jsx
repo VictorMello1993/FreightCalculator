@@ -2,17 +2,15 @@ import styled from 'styled-components';
 import { BiPackage } from "react-icons/bi";
 
 const Header = () => {
-  return (
-    <header>
+  return (    
     <HeaderContent>
       <Icon/>
       FREIGHT CALCULATOR
-    </HeaderContent>
-    </header>
+    </HeaderContent>    
   )
 }
 
-const HeaderContent = styled.div `
+const HeaderContent = styled.header `
     padding: 25px;    
     text-align: center;
     display: flex;
