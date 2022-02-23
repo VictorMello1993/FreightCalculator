@@ -10,8 +10,8 @@ const GlobalStyled = createGlobalStyle`
   html{
     height: 100vh;
     flex: 1;
-    background-color: #fac12f;
-    font-family: 'Open Sans', sans-serif;    
+    background-color: #fac12f;    
+    font-family: 'Roboto', sans-serif;    
   }
 `
 

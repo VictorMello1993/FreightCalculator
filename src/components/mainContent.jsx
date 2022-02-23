@@ -1,5 +1,9 @@
+import Banner from './banner/banner';
+
 const MainContent = () => {
-  return <main>Conteúdo principal</main>
+  return (
+    <Banner />
+  )
 }
 
 export default MainContent
