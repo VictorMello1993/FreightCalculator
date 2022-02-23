@@ -11,7 +11,7 @@ const GlobalStyled = createGlobalStyle`
     height: 100vh;
     flex: 1;
     background-color: #fac12f;    
-    font-family: 'Roboto', sans-serif;    
+    font-family: 'Poppins', sans-serif;        
   }
 `
 

@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <BannerContainer>
       <Title>
-        <p>ESTÁ CANSADO DE NÃO SABER QUANDO CHEGA A SUA ENCOMENDA? CALCULE AQUI JÁ!</p>
+        <p>Está cansado de esperar a sua encomenda? Calcule aqui já!</p>
       </Title>
       <ImageBanner src={BannerImg}/>
     </BannerContainer>
@@ -21,14 +21,14 @@ const BannerContainer = styled.div`
 const Title = styled.p`
   font-weight: 800;
   flex: 1;
-  font-size: 60px;
+  font-size: 45px;  
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;  
 `
 
 const ImageBanner = styled.img `
- height: 350px; 
+ height: 390px; 
  flex: 1;
 `
 
