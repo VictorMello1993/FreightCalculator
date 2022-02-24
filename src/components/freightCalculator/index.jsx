@@ -45,7 +45,7 @@ const FreightCalculator = () => {
             type="select"
             onChange={handleChangeCategorias}
           >
-            <option>--categorias---</option>
+            <option value="">--categorias---</option>
             {categorias.map((cat, i) => (
               <option key={i} value={cat.id}>
                 {cat.body}
