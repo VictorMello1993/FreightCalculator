@@ -1,0 +1,58 @@
+{
+  "Categorias": [
+    {
+      "id": 1,
+      "body": "Frutas"
+    },
+    {
+      "body": "Carnes",
+      "id": 2
+    },
+    {
+      "body": "Laticinios",
+      "id": 3
+    }
+  ],
+  "Produtos": [
+    {
+      "id": 1,
+      "categoriaId": 1,
+      "body": "Banana"
+    },
+    {
+      "categoriaId": 1,
+      "body": "Maçã",
+      "id": 2
+    },
+    {
+      "categoriaId": 1,
+      "body": "Mamão",
+      "id": 3
+    },
+    {
+      "categoriaId": 3,
+      "body": "Queijo",
+      "id": 4
+    },
+    {
+      "categoriaId": 3,
+      "body": "Yogurte",
+      "id": 5
+    },
+    {
+      "categoriaId": 2,
+      "body": "File mignon",
+      "id": 6
+    },
+    {
+      "categoriaId": 2,
+      "body": "Alcatra",
+      "id": 7
+    },
+    {
+      "categoriaId": 2,
+      "body": "Picanha",
+      "id": 8
+    }
+  ]
+}

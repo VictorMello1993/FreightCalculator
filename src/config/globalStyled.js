@@ -4,7 +4,7 @@ const GlobalStyled = createGlobalStyle`
   *{
     margin: 0;
     padding: 0;
-    outline: none;
+    outline: none;    
   }
   body,
   html{

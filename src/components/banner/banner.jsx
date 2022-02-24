@@ -14,14 +14,12 @@ const Banner = () => {
 
 const BannerContainer = styled.div`
   display: flex;
-  justify-content: center;
-  padding: 20px;
+  justify-content: center;  
   color: #335185;
 `
-const Title = styled.p`
-  font-weight: 800;
-  flex: 1;
-  font-size: 45px;  
+const Title = styled.div`
+  font-weight: 800;  
+  font-size: 40px;  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,8 +27,7 @@ const Title = styled.p`
 `
 
 const ImageBanner = styled.img `
- height: 390px; 
- flex: 1;
+ height: 330px;  
 `
 
 export default Banner;

@@ -1,8 +1,13 @@
 import Banner from './banner/banner';
+import {Container} from 'reactstrap';
+import FreightCalculator from '../components/freightCalculator'
 
 const MainContent = () => {
   return (
-    <Banner />
+    <Container>
+      <Banner />
+      <FreightCalculator/>
+    </Container>
   )
 }
 
