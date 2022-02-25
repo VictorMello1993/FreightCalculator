@@ -47,7 +47,8 @@ const FreightCalculator = () => {
               type="select"
               name="estados"
               id="selectEstados"
-              onChange={handleChangeEstado}>
+              onChange={handleChangeEstado}
+              className="rounded">
               <option value="">--Estado (UF)--</option>
               {estados.map((est, i) => (
                 <option key={i} value={est.id}>
@@ -55,7 +56,7 @@ const FreightCalculator = () => {
                 </option>
               ))}
             </Input>
-            <Input placeholder="Cidade" type="select" name="cidades" id="selectCidades">
+            <Input placeholder="Cidade" type="select" name="cidades" id="selectCidades" className="rounded">
               <option value="">--Cidade--</option>
               {cidades.map((cid, i) => (
                 <option key={i} value={cid.id}>
@@ -63,7 +64,7 @@ const FreightCalculator = () => {
                 </option>
               ))}
             </Input>
-            <Input type="tel" placeholder="CEP" mask="99999-999" maskChar="" tag={InputMask} />
+            <Input type="tel" placeholder="CEP" mask="99999-999" maskChar="" tag={InputMask} className="rounded" />
           </FormGroup>
         </FieldSet>
         <FieldSet>
@@ -73,7 +74,8 @@ const FreightCalculator = () => {
               type="select"
               name="estados"
               id="selectEstados"
-              onChange={handleChangeEstado}>
+              onChange={handleChangeEstado}
+              className="rounded">
               <option>--Estado (UF)--</option>
               {estados.map((est, i) => (
                 <option key={i} value={est.id}>
@@ -81,7 +83,7 @@ const FreightCalculator = () => {
                 </option>
               ))}
             </Input>
-            <Input placeholder="Cidade" type="select" name="cidades" id="selectCidades">
+            <Input placeholder="Cidade" type="select" name="cidades" id="selectCidades" className="rounded">
               <option>--Cidade--</option>
               {cidades.map((cid, i) => (
                 <option key={i} value={cid.id}>
@@ -89,7 +91,7 @@ const FreightCalculator = () => {
                 </option>
               ))}
             </Input>
-            <Input type="tel" placeholder="CEP" mask="99999-999" maskChar="" tag={InputMask} />
+            <Input type="tel" placeholder="CEP" mask="99999-999" maskChar="" tag={InputMask} className="rounded" />
           </FormGroup>
         </FieldSet>
         <FieldSet>
@@ -98,8 +100,9 @@ const FreightCalculator = () => {
             <Input type="number"
               placeholder="Peso (kg)"
               min="0"
-              onKeyDown={blockInvalidChar} />
-            <Input type="select" placeholder="Formato" id="selectFormatos">
+              onKeyDown={blockInvalidChar}
+              className="rounded" />
+            <Input type="select" placeholder="Formato" id="selectFormatos" className="rounded">
               <option>--Formato--</option>
               <option value="1">Caixa/Pacote</option>
               <option value="2">Rolo/Prisma</option>
@@ -108,20 +111,24 @@ const FreightCalculator = () => {
             <Input type="number"
               placeholder="Comprimento (cm)"
               min="0"
-              onKeyDown={blockInvalidChar} />
+              onKeyDown={blockInvalidChar} 
+              className="rounded"/>
 
             <Input type="number"
               placeholder="Altura (cm)"
               min="0"
-              onKeyDown={blockInvalidChar} />
+              onKeyDown={blockInvalidChar} 
+              className="rounded"/>
             <Input type="number"
               placeholder="Largura (cm)"
               min="0"
-              onKeyDown={blockInvalidChar} />
+              onKeyDown={blockInvalidChar} 
+              className="rounded"/>
             <Input type="number"
               placeholder="Diâmetro (cm)"
               min="0"
-              onKeyDown={blockInvalidChar} />
+              onKeyDown={blockInvalidChar} 
+              className="rounded"/>
           </FormGroup>
         </FieldSet>
         <hr />
@@ -163,7 +170,7 @@ const FormContainer = styled.div`
 const FormGroup = styled(InputGroup)`    
   gap: 10px;
   margin: 10px 0;
-
+  
   #selectServicos{
     max-width: 30%;
   }
