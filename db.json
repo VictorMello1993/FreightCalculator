@@ -1,58 +1,29 @@
 {
-  "Categorias": [
+  "servicos": [
     {
       "id": 1,
-      "body": "Frutas"
+      "codigo": "04014",
+      "descricao": "SEDEX à vista"
     },
     {
-      "body": "Carnes",
-      "id": 2
+      "id": 2,
+      "codigo": "04510",
+      "descricao": "PAC à vista"
     },
     {
-      "body": "Laticinios",
-      "id": 3
-    }
-  ],
-  "Produtos": [
-    {
-      "id": 1,
-      "categoriaId": 1,
-      "body": "Banana"
+      "id": 3,
+      "codigo": "04782",
+      "descricao": "SEDEX 12 (à vista)"
     },
     {
-      "categoriaId": 1,
-      "body": "Maçã",
-      "id": 2
+      "id": 4,
+      "codigo": "04790",
+      "descricao": "SEDEX 10 (à vista)"
     },
     {
-      "categoriaId": 1,
-      "body": "Mamão",
-      "id": 3
-    },
-    {
-      "categoriaId": 3,
-      "body": "Queijo",
-      "id": 4
-    },
-    {
-      "categoriaId": 3,
-      "body": "Yogurte",
-      "id": 5
-    },
-    {
-      "categoriaId": 2,
-      "body": "File mignon",
-      "id": 6
-    },
-    {
-      "categoriaId": 2,
-      "body": "Alcatra",
-      "id": 7
-    },
-    {
-      "categoriaId": 2,
-      "body": "Picanha",
-      "id": 8
+      "id": 5,
+      "codigo": "04804",
+      "descricao": "SEDEX Hoje à vista"
     }
   ]
 }
