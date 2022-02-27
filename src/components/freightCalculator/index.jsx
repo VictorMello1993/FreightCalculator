@@ -1,6 +1,6 @@
 import axios from "axios";
-import {useEffect, useState } from "react";
-import { Input, InputGroup } from 'reactstrap';
+import { useEffect, useState } from "react";
+import { Input, InputGroup, Button } from 'reactstrap';
 import styled from 'styled-components';
 import InputMask from 'react-input-mask';
 import { Formik } from "formik";
@@ -26,12 +26,12 @@ const FreightCalculator = () => {
     const servicos = await axios.get('http://localhost:3001/servicos');
 
     setEstado(estados.data);
-    setServico(servicos.data);    
+    setServico(servicos.data);
   }
 
   useEffect(() => {
     fazerChamadaAPI();
-  }, []);  
+  }, []);
 
   const handleChangeEstado = async (event) => {
     const idEstado = event.target.value
@@ -40,7 +40,7 @@ const FreightCalculator = () => {
       `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios`
     );
 
-    setCidade(cidadesPorEstado.data);       
+    setCidade(cidadesPorEstado.data);
   }
 
   const blockInvalidChar = event => ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault();
@@ -61,9 +61,10 @@ const FreightCalculator = () => {
 
   return (
     <Formik
-      initialValues={initialValues}            
+      initialValues={initialValues}
       validationSchema={schema}
       validate={validate}
+      validateOnMount
     >
       {(formik) => {
         const { values,
@@ -91,7 +92,7 @@ const FreightCalculator = () => {
                     onChange={(event) => {
                       handleChangeEstado(event)
                       handleChange(event)
-                    }}                    
+                    }}
                     onBlur={handleBlur}
                     className="rounded">
                     <option value="">--Estado (UF)--</option>
@@ -153,7 +154,7 @@ const FreightCalculator = () => {
                     onChange={(event) => {
                       handleChangeEstado(event)
                       handleChange(event)
-                    }}                    
+                    }}
                     onBlur={handleBlur}
                     className="rounded">
                     <option value="">--Estado (UF)--</option>
@@ -320,6 +321,11 @@ const FreightCalculator = () => {
                     <ErrorFeedback>{errors.servico}</ErrorFeedback>}
                 </div>
               </FormGroup>
+              <div className="btnCalcular">
+                <Button disabled={!isValid}>
+                  Calcular
+                </Button>                
+              </div>
             </Form>
           </FormContainer>
         )
@@ -331,6 +337,21 @@ const FreightCalculator = () => {
 const Form = styled.div`
   padding: 20px;
   font-weight: 600;
+
+  .btnCalcular{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btnCalcular > button{
+    background-color: #335185;    
+    width: 200px;
+  }
+
+  .btnCalcular > button:hover{
+    background-color: #87B2F2;
+  }
 `
 
 const Title = styled.div`
