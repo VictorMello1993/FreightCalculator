@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import InputMask from 'react-input-mask';
 import { Formik } from "formik";
 import schema from '../../config/schemaValidation.js'
+import validarCepPorEstado from '../../services/validateCEP/validateCEP'
 
 const FreightCalculator = () => {
 
@@ -13,6 +14,7 @@ const FreightCalculator = () => {
     largura: '', diametro: '', estadoRemetente: '', cidadeRemetente: '', estadoDestinatario: '',
     cidadeDestinatario: '', servico: '', formato: ''
   }
+
   // const [formValues, setFormValues] = useState(initialValues);
   // const [formErrors, setFormErrors] = useState({});
   // const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,8 +47,10 @@ const FreightCalculator = () => {
 
   const blockInvalidChar = event => ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault();
 
-  const validate = ({ cepRemetente, cepDestinatario }) => {
+  const validate = ({ cepRemetente, cepDestinatario, estadoRemetente, estadoDestinatario }) => {
     const errors = {}
+
+    console.log(estadoRemetente)
 
     if (cepRemetente && cepRemetente.replace(/[^0-9]/g, '').length < 8) {
       errors.cepRemetente = 'CEP do remetente deve possuir 8 caracteres'
@@ -54,6 +58,10 @@ const FreightCalculator = () => {
 
     if (cepDestinatario && cepDestinatario.replace(/[^0-9]/g, '').length < 8) {
       errors.cepDestinatario = 'CEP do destinatário deve possuir 8 caracteres'
+    }
+
+    if(cepRemetente && !validarCepPorEstado(cepRemetente, estadoRemetente, estados)){
+      errors.cepRemetente = 'CEP inválido'
     }
 
     return errors
