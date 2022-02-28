@@ -1,5 +1,4 @@
 export default function validarCepPorEstado(cep, indexEstado, estados){
-
   const rangeCepPorEstado = {
     SP: [1000000, 19999999],
     RJ: [20000000, 28999999],
@@ -30,97 +29,12 @@ export default function validarCepPorEstado(cep, indexEstado, estados){
     RR: [69300000, 69399999]
   }
 
-  const ufEstadoRemetente = estados.find(est => est.id === Number(indexEstado))
-  const cepFormatado = cep.replace(/[^0-9]/g, '')
-
-  let cepInf1, cepSup1, cepInf2, cepSup2 = 0
-
-  switch (ufEstadoRemetente.sigla) {
-    case 'RJ':
-      [cepInf1, cepSup1] = rangeCepPorEstado.RJ
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'SP':
-      [cepInf1, cepSup1] = rangeCepPorEstado.SP
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'ES':
-      [cepInf1, cepSup1] = rangeCepPorEstado.ES
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'MG':
-      [cepInf1, cepSup1] = rangeCepPorEstado.ES
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'RS':
-      [cepInf1, cepSup1] = rangeCepPorEstado.RS
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'SC':
-      [cepInf1, cepSup1] = rangeCepPorEstado.SC
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'PR':
-      [cepInf1, cepSup1] = rangeCepPorEstado.PR
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'DF':
-      [cepInf1, cepSup1, cepInf2, cepSup2] = rangeCepPorEstado.DF
-      return ((Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1) ||
-        (Number(cepFormatado) >= cepInf2 && Number(cepFormatado) <= cepSup2))
-    case 'GO':
-      [cepInf1, cepSup1, cepInf2, cepSup2] = rangeCepPorEstado.GO
-      return ((Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1) ||
-        (Number(cepFormatado) >= cepInf2 && Number(cepFormatado) <= cepSup2))
-    case 'MS':
-      [cepInf1, cepSup1] = rangeCepPorEstado.MS
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'MT':
-      [cepInf1, cepSup1] = rangeCepPorEstado.MT
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'BA':
-      [cepInf1, cepSup1] = rangeCepPorEstado.BA
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'PE':
-      [cepInf1, cepSup1] = rangeCepPorEstado.PE
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'SE':
-      [cepInf1, cepSup1] = rangeCepPorEstado.SE
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'PB':
-      [cepInf1, cepSup1] = rangeCepPorEstado.PB
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'CE':
-      [cepInf1, cepSup1] = rangeCepPorEstado.CE
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'AL':
-      [cepInf1, cepSup1] = rangeCepPorEstado.AL
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'RN':
-      [cepInf1, cepSup1] = rangeCepPorEstado.RN
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'PI':
-      [cepInf1, cepSup1] = rangeCepPorEstado.PI
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'MA':
-      [cepInf1, cepSup1] = rangeCepPorEstado.MA
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'TO':
-      [cepInf1, cepSup1] = rangeCepPorEstado.TO
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'PA':
-      [cepInf1, cepSup1] = rangeCepPorEstado.PA
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'AP':
-      [cepInf1, cepSup1] = rangeCepPorEstado.AP
-      return Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1
-    case 'AM':
-      [cepInf1, cepSup1, cepInf2, cepSup2] = rangeCepPorEstado.AM
-      return ((Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1) ||
-        (Number(cepFormatado) >= cepInf2 && Number(cepFormatado) <= cepSup2))
-    case 'AC':
-      [cepInf1, cepSup1] = rangeCepPorEstado.AC
-      return (Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1)
-    case 'RO':
-      [cepInf1, cepSup1] = rangeCepPorEstado.RO
-      return (Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1)
-    case 'RR':
-      [cepInf1, cepSup1] = rangeCepPorEstado.RR
-      return (Number(cepFormatado) >= cepInf1 && Number(cepFormatado) <= cepSup1)
-    default:
-      break;
+  Number.prototype.isBetween = function(min, max) {
+    return this >= min && this <= max
   }
+
+  const estado = estados.find(est => est.id === Number(indexEstado))
+  const cepFormatado = cep.replace(/[^0-9]/g, '')  
+
+  return Number(cepFormatado).isBetween(...rangeCepPorEstado[estado.sigla])
 } 
