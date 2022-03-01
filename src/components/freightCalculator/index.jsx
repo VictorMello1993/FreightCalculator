@@ -49,19 +49,13 @@ const FreightCalculator = () => {
 
   const validate = ({ cepRemetente, cepDestinatario, estadoRemetente, estadoDestinatario }) => {
     const errors = {}
-
-    console.log(estadoRemetente)
-
-    if (cepRemetente && cepRemetente.replace(/[^0-9]/g, '').length < 8) {
-      errors.cepRemetente = 'CEP do remetente deve possuir 8 caracteres'
-    }
-
-    if (cepDestinatario && cepDestinatario.replace(/[^0-9]/g, '').length < 8) {
-      errors.cepDestinatario = 'CEP do destinatário deve possuir 8 caracteres'
-    }
-
+    
     if(cepRemetente && !validarCepPorEstado(cepRemetente, estadoRemetente, estados)){
       errors.cepRemetente = 'CEP inválido'
+    }
+
+    if(cepDestinatario && !validarCepPorEstado(cepDestinatario, estadoDestinatario, estados)){
+      errors.cepDestinatario = 'CEP inválido'
     }
 
     return errors
@@ -72,7 +66,7 @@ const FreightCalculator = () => {
       initialValues={initialValues}
       validationSchema={schema}
       validate={validate}
-      validateOnMount
+      validateOnMount      
     >
       {(formik) => {
         const { values,
@@ -145,6 +139,7 @@ const FreightCalculator = () => {
                       value={values.cepRemetente}
                       id="cepRemetente"
                       invalid={errors.cepRemetente && touched.cepRemetente}
+                      disabled={!values.estadoRemetente || !values.cidadeRemetente}
                     />
                     {errors.cepRemetente && touched.cepRemetente && <ErrorFeedback>
                       {errors.cepRemetente}
@@ -204,7 +199,8 @@ const FreightCalculator = () => {
                       onBlur={handleBlur}
                       value={values.cepDestinatario}
                       onChange={handleChange}
-                      invalid={errors.cepDestinatario && touched.cepDestinatario} />
+                      invalid={errors.cepDestinatario && touched.cepDestinatario} 
+                      disabled={!values.estadoDestinatario || !values.cidadeDestinatario}/>
                     {errors.cepDestinatario && touched.cepDestinatario &&
                       <ErrorFeedback>
                         {errors.cepDestinatario}
