@@ -25,17 +25,10 @@ const FreightCalculator = () => {
   const [servicos, setServico] = useState([])
 
   const fazerChamadaAPI = async () => {
-  
-    axios.defaults.headers.get['Content-Type'] ='application/json;charset=utf-8';
-    axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
-    const estados = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados', (req, res) => {
-      res.header("Access-Control-Allow-Origin", "*")
-    });
+    const estados = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
 
-    const servicos = await axios.get('http://localhost:3001/servicos', (req, res) => {
-      res.header("Access-Control-Allow-Origin", "*")
-    });
+    const servicos = await axios.get('http://localhost:3001/servicos');
 
     setEstado(estados.data);
     setServico(servicos.data);
@@ -48,12 +41,7 @@ const FreightCalculator = () => {
   const handleChangeEstado = async (event) => {
     const idEstado = event.target.value
 
-    const cidadesPorEstado = await axios.get(
-      `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios`,
-      (req, res) => {        
-        res.header("Access-Control-Allow-Origin", "*")
-      }
-    );
+    const cidadesPorEstado = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios`);
 
     setCidade(cidadesPorEstado.data);
   }
@@ -79,9 +67,7 @@ const FreightCalculator = () => {
 
     const codigoServico = servicos.find(svc => svc.id === Number(values.servico))?.codigo        
 
-    values.servico = codigoServico
-
-    console.log(values.servico)
+    values.servico = codigoServico    
 
     calcularPrecoFrete(values)
   }
@@ -110,7 +96,8 @@ const FreightCalculator = () => {
                 Preencha os dados aqui
               </Title>
               <FormElement onSubmit={(event) => {
-                submit(event, values)                
+                submit(event, values)
+                handleSubmit(event)                
               }}
               method="POST">
                 <FieldSet>
@@ -355,7 +342,7 @@ const FreightCalculator = () => {
                   </div>
                 </FormGroup>
                 <div className="btnCalcular">
-                  <Button type="submit">
+                  <Button type="submit" disabled={!isValid}>
                     Calcular
                   </Button>
                 </div>
