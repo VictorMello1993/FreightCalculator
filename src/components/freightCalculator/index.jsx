@@ -21,7 +21,8 @@ const FreightCalculator = () => {
   // const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [estados, setEstado] = useState([])
-  const [cidades, setCidade] = useState([])
+  const [cidadesRemetente, setCidadeRemetente] = useState([])
+  const [cidadesDestinatario, setCidadeDestinatario] = useState([])
   const [servicos, setServico] = useState([])
 
   const fazerChamadaAPI = async () => {
@@ -39,11 +40,16 @@ const FreightCalculator = () => {
   }, []);
 
   const handleChangeEstado = async (event) => {
+    console.log(event.target)
     const idEstado = event.target.value
 
     const cidadesPorEstado = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios`);
 
-    setCidade(cidadesPorEstado.data);
+    if(event.target.id === 'estadoRemetente'){
+      setCidadeRemetente(cidadesPorEstado.data);
+    } else{
+      setCidadeDestinatario(cidadesPorEstado.data);
+    }
   }
 
   const blockInvalidChar = event => ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault();
@@ -132,7 +138,7 @@ const FreightCalculator = () => {
                       onChange={handleChange}
                       className="rounded">
                       <option value="">--Cidade--</option>
-                      {cidades.map((cid, i) => (
+                      {cidadesRemetente.map((cid, i) => (
                         <option key={i} value={cid.id}>
                           {cid.nome}
                         </option>
@@ -194,7 +200,7 @@ const FreightCalculator = () => {
                       onBlur={handleBlur}
                       onChange={handleChange}>
                       <option value="">--Cidade--</option>
-                      {cidades.map((cid, i) => (
+                      {cidadesDestinatario.map((cid, i) => (
                         <option key={i} value={cid.id}>
                           {cid.nome}
                         </option>
