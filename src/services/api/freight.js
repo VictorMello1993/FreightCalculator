@@ -24,10 +24,7 @@ export default async function calcularPrecoFrete({ cepRemetente, cepDestinatario
     }
 
     const json = JSON.stringify(res)   
-    const jsonDecoded = JSON.parse(json)
-
-    console.log(json)
-    console.log(jsonDecoded)
+    return JSON.parse(json)    
   })    
 }
 
