@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as xml2js from 'xml2js'
 
-export default async function calcularPrecoFrete({ cepRemetente, cepDestinatario, peso, formato, comprimento, altura, largura, servico, diametro }) {
+export async function calcularPrecoFrete({ cepRemetente, cepDestinatario, peso, formato, comprimento, altura, largura, servico, diametro }) {
 
   const args = {
     sCepOrigem: cepRemetente,
@@ -26,5 +26,17 @@ export default async function calcularPrecoFrete({ cepRemetente, cepDestinatario
     const json = JSON.stringify(res)   
     return JSON.parse(json)    
   })    
+}
+
+export async function obterTiposServico(){
+  return await axios.get('http://localhost:3001/servicos');
+}
+
+export async function obterEstados(){
+  return await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+}
+
+export async function obterCidades(idEstado){
+  return await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios`)
 }
 

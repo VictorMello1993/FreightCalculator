@@ -5,7 +5,7 @@ import InputMask from 'react-input-mask';
 import { Formik } from "formik";
 import schema from '../../config/schemaValidation.js'
 import validarCepPorEstado from '../../services/validateCEP/validateCEP'
-import calcularPrecoFrete from '../../services/api/freight.service'
+import {calcularPrecoFrete, obterCidades, obterEstados, obterTiposServico } from '../../services/api/freight.service'
 import { FieldSet, Title, Container, FormElement, FieldGroup, Field, ErrorFeedback, ButtonContainer, CalculateButton} from './styles';
 import Result from '../resultFreight'
 
@@ -28,8 +28,8 @@ const FreightCalculator = () => {
 
   const fazerChamadaAPI = async () => {
 
-    const estados = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
-    const servicos = await axios.get('http://localhost:3001/servicos');
+    const estados = await obterEstados();
+    const servicos = await obterTiposServico()
 
     setEstado(estados.data);
     setServico(servicos.data);
@@ -39,11 +39,10 @@ const FreightCalculator = () => {
     fazerChamadaAPI();
   }, []);
 
-  const handleChangeEstado = async (event) => {
-    console.log(event.target)
+  const handleChangeEstado = async (event) => {    
     const idEstado = event.target.value
 
-    const cidadesPorEstado = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios`);
+    const cidadesPorEstado = await obterCidades(idEstado)
 
     if (event.target.id === 'estadoRemetente') {
       setCidadeRemetente(cidadesPorEstado.data);
@@ -71,7 +70,7 @@ const FreightCalculator = () => {
   const submit = (event, values) => {
     event.preventDefault()
 
-    setResult(true)
+    setResult(true) 
 
     // const codigoServico = servicos.find(svc => svc.id === Number(values.servico))?.codigo
 
