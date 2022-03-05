@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Input, InputGroup, Button } from 'reactstrap';
-import styled from 'styled-components';
+import { Input } from 'reactstrap';
 import InputMask from 'react-input-mask';
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import schema from '../../config/schemaValidation.js'
 import validarCepPorEstado from '../../services/validateCEP/validateCEP'
-import calcularPrecoFrete from '../../services/api/freight'
+import calcularPrecoFrete from '../../services/api/freight.service'
+import { FieldSet, Title, Container, FormElement, FieldGroup, Field, ErrorFeedback, ButtonContainer, CalculateButton} from './styles';
 
 const FreightCalculator = () => {
 
@@ -119,7 +119,8 @@ const FreightCalculator = () => {
                           handleChangeEstado(event)
                           handleChange(event)
                         }}
-                        onBlur={handleBlur}>
+                        onBlur={handleBlur}
+                        className="rounded">
                         <option value="">--Estado (UF)--</option>
                         {estados.map((est, i) => (
                           <option key={i} value={est.id}>
@@ -138,7 +139,8 @@ const FreightCalculator = () => {
                         name="cidadeRemetente"
                         id="cidadeRemetente"
                         onBlur={handleBlur}
-                        onChange={handleChange}>
+                        onChange={handleChange}
+                        className="rounded">
                         <option value="">--Cidade--</option>
                         {cidadesRemetente.map((cid, i) => (
                           <option key={i} value={cid.id}>
@@ -156,7 +158,8 @@ const FreightCalculator = () => {
                         placeholder="CEP"
                         mask="99999-999"
                         maskChar=""
-                        tag={InputMask}                        
+                        tag={InputMask}
+                        className="rounded"
                         name="cepRemetente"
                         onBlur={handleBlur}
                         onChange={handleChange}
@@ -183,7 +186,8 @@ const FreightCalculator = () => {
                           handleChangeEstado(event)
                           handleChange(event)
                         }}
-                        onBlur={handleBlur}>
+                        onBlur={handleBlur}
+                        className="rounded">
                         <option value="">--Estado (UF)--</option>
                         {estados.map((est, i) => (
                           <option key={i} value={est.id}>
@@ -200,6 +204,7 @@ const FreightCalculator = () => {
                         type="select"
                         name="cidadeDestinatario"
                         id="cidadeDestinatario"
+                        className="rounded"
                         onBlur={handleBlur}
                         onChange={handleChange}>
                         <option value="">--Cidade--</option>
@@ -218,7 +223,8 @@ const FreightCalculator = () => {
                         placeholder="CEP"
                         mask="99999-999"
                         maskChar=""
-                        tag={InputMask}                        
+                        tag={InputMask}
+                        className="rounded"
                         name="cepDestinatario"
                         id="cepDestinatario"
                         onBlur={handleBlur}
@@ -241,6 +247,7 @@ const FreightCalculator = () => {
                         placeholder="Peso (kg)"
                         min="0"
                         onKeyDown={blockInvalidChar}
+                        className="rounded"
                         id="peso"
                         name="peso"
                         onBlur={handleBlur}
@@ -274,6 +281,7 @@ const FreightCalculator = () => {
                         placeholder="Comprimento (cm)"
                         min="0"
                         onKeyDown={blockInvalidChar}
+                        className="rounded"
                         id="comprimento"
                         name="comprimento"
                         onChange={handleChange}
@@ -291,7 +299,8 @@ const FreightCalculator = () => {
                       <Input type="number"
                         placeholder="Altura (cm)"
                         min="0"
-                        onKeyDown={blockInvalidChar}                        
+                        onKeyDown={blockInvalidChar}
+                        className="rounded"
                         id="altura"
                         name="altura"
                         onChange={handleChange}
@@ -310,6 +319,7 @@ const FreightCalculator = () => {
                         id="largura"
                         name="largura"
                         onKeyDown={blockInvalidChar}
+                        className="rounded"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.largura}
@@ -325,7 +335,8 @@ const FreightCalculator = () => {
                         min="0"
                         id="diametro"
                         name="diametro"
-                        onKeyDown={blockInvalidChar}                        
+                        onKeyDown={blockInvalidChar}
+                        className="rounded"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.diametro}
@@ -345,7 +356,7 @@ const FreightCalculator = () => {
                       name="servico"
                       id="servico"
                       onChange={handleChange}
-                      onBlur={handleBlur}>
+                      onBlur={handleBlur}                  >
                       <option value="">--Tipo de serviço--</option>
                       {servicos.map((svc, i) => (
                         <option key={i} value={svc.id}>
@@ -369,69 +380,5 @@ const FreightCalculator = () => {
       </Formik>
   )
 }
-
-const FormElement = styled(Form)`
-  padding: 20px;
-  font-weight: 600;  
-`
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const CalculateButton = styled(Button)`
-  background-color: #335185;
-  width: 200px;
-
-  &:hover{
-    background-color: #87B2F2;
-  }
-`
-
-const Title = styled.div`
-  font-size: 25px;  
-  font-weight: 600;
-  text-align: center;    
-  color: #335185;    
-  padding: 15px;
-`
-
-const Container = styled.div`
-  background-color: #fafafa;    
-  border-radius: 4px 4px 0 0;  
-`
-
-const FieldGroup = styled(InputGroup)`    
-  gap: 20px;
-  margin: 10px 0;
-  padding: 10px 0;
-  
-  .ctnServicos{
-    max-width: 30%;
-  }
-`
-
-const FieldSet = styled.fieldset`
-  color: #335185;
-  padding: 15px;  
-`
-
-const ErrorFeedback = styled.div`
-  padding: 5px;
-  color: #dc3545;
-  font-size: 12px;  
-`
-
-const FreightResult = styled.div`
-  background-color: #fafafa;
-  padding: 30px;
-  margin-top: 50px;
-`
-
-const Field = styled.div`
-  flex: 1;
-`
 
 export default FreightCalculator
