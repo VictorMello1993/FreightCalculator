@@ -1,6 +1,7 @@
-import Banner from './banner/banner';
 import {Container} from 'reactstrap';
-import FreightCalculator from '../components/freightCalculator'
+import FreightCalculator from './../freightCalculator/index';
+import Banner from './../banner/banner';
+
 
 const MainContent = () => {
   return (

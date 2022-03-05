@@ -119,8 +119,7 @@ const FreightCalculator = () => {
                           handleChangeEstado(event)
                           handleChange(event)
                         }}
-                        onBlur={handleBlur}
-                        className="rounded">
+                        onBlur={handleBlur}>
                         <option value="">--Estado (UF)--</option>
                         {estados.map((est, i) => (
                           <option key={i} value={est.id}>
@@ -139,8 +138,7 @@ const FreightCalculator = () => {
                         name="cidadeRemetente"
                         id="cidadeRemetente"
                         onBlur={handleBlur}
-                        onChange={handleChange}
-                        className="rounded">
+                        onChange={handleChange}>
                         <option value="">--Cidade--</option>
                         {cidadesRemetente.map((cid, i) => (
                           <option key={i} value={cid.id}>
@@ -158,8 +156,7 @@ const FreightCalculator = () => {
                         placeholder="CEP"
                         mask="99999-999"
                         maskChar=""
-                        tag={InputMask}
-                        className="rounded"
+                        tag={InputMask}                        
                         name="cepRemetente"
                         onBlur={handleBlur}
                         onChange={handleChange}
@@ -186,8 +183,7 @@ const FreightCalculator = () => {
                           handleChangeEstado(event)
                           handleChange(event)
                         }}
-                        onBlur={handleBlur}
-                        className="rounded">
+                        onBlur={handleBlur}>
                         <option value="">--Estado (UF)--</option>
                         {estados.map((est, i) => (
                           <option key={i} value={est.id}>
@@ -204,7 +200,6 @@ const FreightCalculator = () => {
                         type="select"
                         name="cidadeDestinatario"
                         id="cidadeDestinatario"
-                        className="rounded"
                         onBlur={handleBlur}
                         onChange={handleChange}>
                         <option value="">--Cidade--</option>
@@ -223,8 +218,7 @@ const FreightCalculator = () => {
                         placeholder="CEP"
                         mask="99999-999"
                         maskChar=""
-                        tag={InputMask}
-                        className="rounded"
+                        tag={InputMask}                        
                         name="cepDestinatario"
                         id="cepDestinatario"
                         onBlur={handleBlur}
@@ -247,7 +241,6 @@ const FreightCalculator = () => {
                         placeholder="Peso (kg)"
                         min="0"
                         onKeyDown={blockInvalidChar}
-                        className="rounded"
                         id="peso"
                         name="peso"
                         onBlur={handleBlur}
@@ -281,7 +274,6 @@ const FreightCalculator = () => {
                         placeholder="Comprimento (cm)"
                         min="0"
                         onKeyDown={blockInvalidChar}
-                        className="rounded"
                         id="comprimento"
                         name="comprimento"
                         onChange={handleChange}
@@ -299,8 +291,7 @@ const FreightCalculator = () => {
                       <Input type="number"
                         placeholder="Altura (cm)"
                         min="0"
-                        onKeyDown={blockInvalidChar}
-                        className="rounded"
+                        onKeyDown={blockInvalidChar}                        
                         id="altura"
                         name="altura"
                         onChange={handleChange}
@@ -319,7 +310,6 @@ const FreightCalculator = () => {
                         id="largura"
                         name="largura"
                         onKeyDown={blockInvalidChar}
-                        className="rounded"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.largura}
@@ -335,8 +325,7 @@ const FreightCalculator = () => {
                         min="0"
                         id="diametro"
                         name="diametro"
-                        onKeyDown={blockInvalidChar}
-                        className="rounded"
+                        onKeyDown={blockInvalidChar}                        
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.diametro}
@@ -356,7 +345,7 @@ const FreightCalculator = () => {
                       name="servico"
                       id="servico"
                       onChange={handleChange}
-                      onBlur={handleBlur}                  >
+                      onBlur={handleBlur}>
                       <option value="">--Tipo de serviço--</option>
                       {servicos.map((svc, i) => (
                         <option key={i} value={svc.id}>

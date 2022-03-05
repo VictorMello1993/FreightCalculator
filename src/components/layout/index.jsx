@@ -1,6 +1,7 @@
-import Header from "../header"
-import Footer from '../footer';
-import MainContent from "../mainContent";
+
+import Footer from './footer';
+import MainContent from './mainContent';
+import Header from './header';
 
 const Layout = () => {
   return (
