@@ -7,6 +7,7 @@ import schema from '../../config/schemaValidation.js'
 import validarCepPorEstado from '../../services/validateCEP/validateCEP'
 import calcularPrecoFrete from '../../services/api/freight.service'
 import { FieldSet, Title, Container, FormElement, FieldGroup, Field, ErrorFeedback, ButtonContainer, CalculateButton} from './styles';
+import Result from '../resultFreight'
 
 const FreightCalculator = () => {
 
@@ -19,7 +20,7 @@ const FreightCalculator = () => {
   // const [formValues, setFormValues] = useState(initialValues);
   // const [formErrors, setFormErrors] = useState({});
   // const [isSubmitting, setIsSubmitting] = useState(false);
-  const [result, setResult] = useState({})
+  const [result, setResult] = useState(false)
   const [estados, setEstado] = useState([])
   const [cidadesRemetente, setCidadeRemetente] = useState([])
   const [cidadesDestinatario, setCidadeDestinatario] = useState([])
@@ -70,13 +71,15 @@ const FreightCalculator = () => {
   const submit = (event, values) => {
     event.preventDefault()
 
-    const codigoServico = servicos.find(svc => svc.id === Number(values.servico))?.codigo
+    setResult(true)
 
-    values.servico = codigoServico
+    // const codigoServico = servicos.find(svc => svc.id === Number(values.servico))?.codigo
 
-    const result = calcularPrecoFrete(values)
+    // values.servico = codigoServico
 
-    setResult(result)
+    // const result = calcularPrecoFrete(values)
+
+    // setResult(result)
   }
 
   return (    
@@ -358,10 +361,11 @@ const FreightCalculator = () => {
                   </div>
                 </FieldGroup>
                 <ButtonContainer>
-                  <CalculateButton type="submit" disabled={!isValid}>
+                  <CalculateButton type="submit" disabled={false}>
                     Calcular
                   </CalculateButton>
                 </ButtonContainer>
+                {result && <Result data={values}>Teste</Result>}
               </FormElement>
             </Container>
           )

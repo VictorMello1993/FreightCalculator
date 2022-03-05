@@ -56,12 +56,6 @@ export const ErrorFeedback = styled.div`
   font-size: 12px;  
 `
 
-export const FreightResult = styled.div`
-  background-color: #fafafa;
-  padding: 30px;
-  margin-top: 50px;
-`
-
 export const Field = styled.div`
   flex: 1;
 `
