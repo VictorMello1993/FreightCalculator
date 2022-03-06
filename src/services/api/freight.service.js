@@ -1,5 +1,7 @@
 import axios from 'axios';
 import * as xml2js from 'xml2js'
+import dataServicos from '../../storage/tipos-servico.json'
+import dataStates from '../../storage/estados-municipios.json'
 
 export async function calcularPrecoFrete({ cepRemetente, cepDestinatario, peso, formato, comprimento, altura, largura, servico, diametro }) {
 
@@ -28,15 +30,22 @@ export async function calcularPrecoFrete({ cepRemetente, cepDestinatario, peso, 
   })    
 }
 
-export async function obterTiposServico(){
-  return await axios.get('http://localhost:3001/servicos');
+export function obterTiposServico(){
+  return dataServicos.servicos.map(({id, codigo, descricao}) => ({
+    id,
+    codigo, 
+    descricao
+  }))
 }
 
-export async function obterEstados(){
-  return await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+export function obterEstados(){
+  return dataStates.estados.map(({sigla, nome}) => ({
+    sigla,
+    nome
+  }))
 }
 
-export async function obterCidades(idEstado){
-  return await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios`)
+export function obterCidades(sigla){
+  return dataStates.estados.find(estado => estado.sigla === sigla)?.cidades
 }
 

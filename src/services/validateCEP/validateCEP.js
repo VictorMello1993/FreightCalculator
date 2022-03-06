@@ -1,4 +1,4 @@
-export default function validarCepPorEstado(cep, indexEstado, estados){
+export default function validarCepPorEstado(cep, siglaEstado){
   const rangeCepPorEstado = {
     SP: [1000000, 19999999],
     RJ: [20000000, 28999999],
@@ -32,9 +32,8 @@ export default function validarCepPorEstado(cep, indexEstado, estados){
   Number.prototype.isBetween = function(min, max) {
     return this >= min && this <= max
   }
-
-  const estado = estados.find(est => est.id === Number(indexEstado))
+  
   const cepFormatado = cep.replace(/[^0-9]/g, '')  
 
-  return Number(cepFormatado).isBetween(...rangeCepPorEstado[estado.sigla])
+  return Number(cepFormatado).isBetween(...rangeCepPorEstado[siglaEstado])
 } 

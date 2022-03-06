@@ -10,8 +10,8 @@ export default Yup.object().shape({
   comprimento: Yup.number().required('Comprimento é obrigatório'),  
   servico: Yup.number().required('É preciso selecionar o tipo de serviço'),  
   formato: Yup.number().required('É preciso selecionar o formato da encomenda'),  
-  estadoRemetente: Yup.number().required('É preciso selecionar o estado'),
-  cidadeRemetente: Yup.number().required('É preciso selecionar a cidade'),  
-  estadoDestinatario: Yup.number().required('É preciso selecionar o estado'),
-  cidadeDestinatario: Yup.number().required('É preciso selecionar a cidade'),  
+  estadoRemetente: Yup.string().required('É preciso selecionar o estado'),
+  cidadeRemetente: Yup.string().required('É preciso selecionar a cidade'),  
+  estadoDestinatario: Yup.string().required('É preciso selecionar o estado'),
+  cidadeDestinatario: Yup.string().required('É preciso selecionar a cidade'),  
 })

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Input } from 'reactstrap';
 import InputMask from 'react-input-mask';
@@ -28,27 +27,31 @@ const FreightCalculator = () => {
 
   const fazerChamadaAPI = async () => {
 
-    const estados = await obterEstados();
-    const servicos = await obterTiposServico()
+    const estados = obterEstados();
+    const servicos = obterTiposServico()
 
-    setEstado(estados.data);
-    setServico(servicos.data);
+    setEstado(estados);
+    setServico(servicos);
   }
 
   useEffect(() => {
     fazerChamadaAPI();
   }, []);
 
-  const handleChangeEstado = async (event) => {    
-    const idEstado = event.target.value
+  const handleChangeEstado = (event, values) => {    
+    const sigla = event.target.value
 
-    const cidadesPorEstado = await obterCidades(idEstado)
+    const cidadesPorEstado = obterCidades(sigla)
 
     if (event.target.id === 'estadoRemetente') {
-      setCidadeRemetente(cidadesPorEstado.data);
-    } else {
-      setCidadeDestinatario(cidadesPorEstado.data);
+      values.cidadeRemetente = cidadesPorEstado ? values.cidadeRemetente : ''
+      setCidadeRemetente(cidadesPorEstado ?? []);
+    } else if(event.target.id === 'estadoDestinatario') {
+      values.cidadesDestinatario = cidadesPorEstado ? values.cidadeDestinatario : ''
+      setCidadeDestinatario(cidadesPorEstado ?? []);
     }
+    
+    clearCEP(event, values)
   }
 
   const blockInvalidChar = event => ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault();
@@ -56,11 +59,11 @@ const FreightCalculator = () => {
   const validate = ({ cepRemetente, cepDestinatario, estadoRemetente, estadoDestinatario }) => {
     const errors = {}
 
-    if (cepRemetente && !validarCepPorEstado(cepRemetente, estadoRemetente, estados)) {
+    if (cepRemetente && !validarCepPorEstado(cepRemetente, estadoRemetente)) {
       errors.cepRemetente = 'CEP inválido'
     }
 
-    if (cepDestinatario && !validarCepPorEstado(cepDestinatario, estadoDestinatario, estados)) {
+    if (cepDestinatario && !validarCepPorEstado(cepDestinatario, estadoDestinatario)) {
       errors.cepDestinatario = 'CEP inválido'
     }
 
@@ -79,6 +82,16 @@ const FreightCalculator = () => {
     // const result = calcularPrecoFrete(values)
 
     // setResult(result)
+  } 
+  
+  const clearCEP= ({target, value}, values) => {
+    if((target.id === 'cidadeRemetente' || target.id === 'estadoRemetente') && !value){
+      values.cepRemetente = ''
+    }
+
+    if((target.id === 'cidadeDestinatario' || target.id === 'estadoDestinatario') && !value){
+      values.cepDestinatario = ''  
+    }    
   }
 
   return (    
@@ -117,13 +130,16 @@ const FreightCalculator = () => {
                         name="estadoRemetente"
                         id="estadoRemetente"
                         onChange={(event) => {
-                          handleChangeEstado(event)
+                          handleChangeEstado(event, values)
                           handleChange(event)
                         }}
-                        onBlur={handleBlur}>
+                        onBlur={(event) => {
+                          clearCEP(event, values)
+                          handleBlur(event)
+                        }}>
                         <option value="">--Estado (UF)--</option>
                         {estados.map((est, i) => (
-                          <option key={i} value={est.id}>
+                          <option key={i} value={est.sigla}>
                             {est.nome} ({est.sigla})
                           </option>
                         ))}
@@ -138,13 +154,19 @@ const FreightCalculator = () => {
                         type="select"
                         name="cidadeRemetente"
                         id="cidadeRemetente"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
+                        onBlur={(event) => {
+                          clearCEP(event, values)
+                          handleBlur(event)
+                        }}
+                        onChange={(event) => {                          
+                          clearCEP(event, values)
+                          handleChange(event)
+                        }}
                         disabled={cidadesRemetente.length === 0}>
                         <option value="">--Cidade--</option>
-                        {cidadesRemetente.map((cid, i) => (
-                          <option key={i} value={cid.id}>
-                            {cid.nome}
+                        {cidadesRemetente.map((cid) => (
+                          <option key={cid} value={cid}>
+                            {cid}
                           </option>
                         ))}
                       </Input>
@@ -182,13 +204,16 @@ const FreightCalculator = () => {
                         name="estadoDestinatario"
                         id="estadoDestinatario"
                         onChange={(event) => {
-                          handleChangeEstado(event)
+                          handleChangeEstado(event, values)
                           handleChange(event)
                         }}
-                        onBlur={handleBlur}>
+                        onBlur={(event) => {
+                          clearCEP(event, values)
+                          handleBlur(event)
+                        }}>
                         <option value="">--Estado (UF)--</option>
                         {estados.map((est, i) => (
-                          <option key={i} value={est.id}>
+                          <option key={i} value={est.sigla}>
                             {est.nome} ({est.sigla})
                           </option>
                         ))}
@@ -202,13 +227,19 @@ const FreightCalculator = () => {
                         type="select"
                         name="cidadeDestinatario"
                         id="cidadeDestinatario"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
+                        onBlur={(event) => {
+                          clearCEP(event, values)
+                          handleBlur(event)
+                        }}
+                        onChange={(event) => {
+                          clearCEP(event, values)
+                          handleChange(event)
+                        }}
                         disabled={cidadesDestinatario.length === 0}>
                         <option value="">--Cidade--</option>
-                        {cidadesDestinatario.map((cid, i) => (
-                          <option key={i} value={cid.id}>
-                            {cid.nome}
+                        {cidadesDestinatario.map((cid) => (
+                          <option key={cid} value={cid}>
+                            {cid}
                           </option>
                         ))}
                       </Input>
