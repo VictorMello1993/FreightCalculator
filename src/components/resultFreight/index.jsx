@@ -1,20 +1,9 @@
 import styled from 'styled-components';
 
-const Result = ({data}) => {
-  console.log(data)
+const Result = ({data}) => {  
   return(
-    <ResultContainer>
-      <Item>Estado do remetente: {data?.estadoRemetente}</Item>
-      <Item>Cidade do remetente: {data?.cidadeRemetente}</Item>
-      <Item>Estado do destinatário: {data?.estadoDestinatario}</Item>
-      <Item>Cidade do destinatário: {data?.cidadeDestinatario}</Item>
-      <Item>Cep Remetente: {data?.cepRemetente}</Item>
-      <Item>Formato: {data?.cepDestinatario}</Item>
-      <Item>Comprimento: {data?.comprimento}</Item>
-      <Item>Altura: {data?.altura}</Item>
-      <Item>Largura: {data?.largura}</Item>
-      <Item>Diametro: {data?.diametro}</Item>
-      <Item>Tipo de serviço: {data?.servico}</Item>      
+    <ResultContainer>   
+      <Item>O valor do frete é de R${data?.valorFrete} e o prazo de entrega é {data?.diasUteis} dias úteis.</Item>      
     </ResultContainer>
   )    
 }

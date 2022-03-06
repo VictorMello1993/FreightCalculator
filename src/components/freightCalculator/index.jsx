@@ -13,7 +13,7 @@ const FreightCalculator = () => {
   const initialValues = {
     cepRemetente: '', cepDestinatario: '', peso: '', comprimento: '', altura: '',
     largura: '', diametro: '', estadoRemetente: '', cidadeRemetente: '', estadoDestinatario: '',
-    cidadeDestinatario: '', servico: '', formato: ''
+    cidadeDestinatario: '', servico: '', formato: '', valorFrete: '', diasUteis: ''
   }
 
   // const [formValues, setFormValues] = useState(initialValues);
@@ -71,17 +71,17 @@ const FreightCalculator = () => {
   }
 
   const submit = (event, values) => {
-    event.preventDefault()
+    (async () => {
+      const {Servicos} = await calcularPrecoFrete(values)      
+      const {cServico} = Servicos
 
-    setResult(true) 
+      const [result] = cServico
 
-    // const codigoServico = servicos.find(svc => svc.id === Number(values.servico))?.codigo
+      values.valorFrete = result.Valor[0]
+      values.diasUteis = result.PrazoEntrega[0]      
 
-    // values.servico = codigoServico
-
-    // const result = calcularPrecoFrete(values)
-
-    // setResult(result)
+      setResult(result)
+    })()
   } 
   
   const clearCEP= ({target, value}, values) => {
@@ -381,7 +381,7 @@ const FreightCalculator = () => {
                       onBlur={handleBlur}                  >
                       <option value="">--Tipo de serviço--</option>
                       {servicos.map((svc, i) => (
-                        <option key={i} value={svc.id}>
+                        <option key={i} value={svc.codigo}>
                           {svc.descricao}
                         </option>
                       ))}
