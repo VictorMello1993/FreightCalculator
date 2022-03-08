@@ -393,7 +393,7 @@ const FreightCalculator = () => {
                   </div>
                 </FieldGroup>
                 <ButtonContainer>
-                  <CalculateButton type="submit" disabled={false}>
+                  <CalculateButton type="submit" disabled={!isValid}>
                     Calcular
                   </CalculateButton>
                 </ButtonContainer>
