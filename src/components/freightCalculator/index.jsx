@@ -16,11 +16,9 @@ const FreightCalculator = () => {
     cidadeDestinatario: '', servico: '', formato: '', valorFrete: '', diasUteis: ''
   }
 
-  // const [formValues, setFormValues] = useState(initialValues);
-  // const [formErrors, setFormErrors] = useState({});
-  // const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState(false)
-  const [estados, setEstado] = useState([])
+  const [estadosRemetente, setEstadoRemetente] = useState([])
+  const [estadosDestinatario, setEstadoDestinatario] = useState([])
   const [cidadesRemetente, setCidadeRemetente] = useState([])
   const [cidadesDestinatario, setCidadeDestinatario] = useState([])
   const [servicos, setServico] = useState([])
@@ -30,7 +28,8 @@ const FreightCalculator = () => {
     const estados = obterEstados();
     const servicos = obterTiposServico()
 
-    setEstado(estados);
+    setEstadoRemetente(estados);
+    setEstadoDestinatario(estados);
     setServico(servicos);
   }
 
@@ -47,21 +46,21 @@ const FreightCalculator = () => {
       values.cidadeRemetente = cidadesPorEstado ? values.cidadeRemetente : ''
       setCidadeRemetente(cidadesPorEstado ?? []);
     } else if(event.target.id === 'estadoDestinatario') {
-      values.cidadesDestinatario = cidadesPorEstado ? values.cidadeDestinatario : ''
+      values.cidadesDestinatario = cidadesPorEstado ? values.cidadeDestinatario : ''      
       setCidadeDestinatario(cidadesPorEstado ?? []);
     }
-    
+
     clearCEP(event, values)
   }
 
   const blockInvalidChar = event => ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault();
 
   const validate = ({ cepRemetente, cepDestinatario, estadoRemetente, estadoDestinatario }) => {
-    const errors = {}
+    const errors = {}    
 
     if (cepRemetente && !validarCepPorEstado(cepRemetente, estadoRemetente)) {
       errors.cepRemetente = 'CEP inválido'
-    }
+    }    
 
     if (cepDestinatario && !validarCepPorEstado(cepDestinatario, estadoDestinatario)) {
       errors.cepDestinatario = 'CEP inválido'
@@ -84,12 +83,12 @@ const FreightCalculator = () => {
     })()
   } 
   
-  const clearCEP= ({target, value}, values) => {
-    if((target.id === 'cidadeRemetente' || target.id === 'estadoRemetente') && !value){
+  const clearCEP= ({target}, values) => {
+    if((target.id === 'cidadeRemetente' || target.id === 'estadoRemetente') && !target.value){
       values.cepRemetente = ''
     }
 
-    if((target.id === 'cidadeDestinatario' || target.id === 'estadoDestinatario') && !value){
+    if((target.id === 'cidadeDestinatario' || target.id === 'estadoDestinatario') && !target.value){
       values.cepDestinatario = ''  
     }    
   }
@@ -99,7 +98,7 @@ const FreightCalculator = () => {
         initialValues={initialValues}
         validationSchema={schema}
         validate={validate}
-        validateOnMount
+        validateOnMount        
       >
         {(formik) => {
           const {
@@ -109,7 +108,8 @@ const FreightCalculator = () => {
             errors,
             touched,
             handleBlur,
-            isValid
+            setFieldValue,
+            isValid            
           } = formik
           return (
             <Container>
@@ -130,15 +130,16 @@ const FreightCalculator = () => {
                         name="estadoRemetente"
                         id="estadoRemetente"
                         onChange={(event) => {
+                          setFieldValue('cidadeRemetente', '')
                           handleChangeEstado(event, values)
-                          handleChange(event)
+                          handleChange(event)                          
                         }}
                         onBlur={(event) => {
                           clearCEP(event, values)
                           handleBlur(event)
                         }}>
                         <option value="">--Estado (UF)--</option>
-                        {estados.map((est, i) => (
+                        {estadosRemetente.map((est, i) => (
                           <option key={i} value={est.sigla}>
                             {est.nome} ({est.sigla})
                           </option>
@@ -183,7 +184,7 @@ const FreightCalculator = () => {
                         tag={InputMask}
                         name="cepRemetente"
                         onBlur={handleBlur}
-                        onChange={handleChange}
+                        onChange={handleChange} 
                         value={values.cepRemetente}
                         id="cepRemetente"
                         invalid={errors.cepRemetente && touched.cepRemetente}
@@ -204,15 +205,16 @@ const FreightCalculator = () => {
                         name="estadoDestinatario"
                         id="estadoDestinatario"
                         onChange={(event) => {
-                          handleChangeEstado(event, values)
-                          handleChange(event)
+                          setFieldValue('cidadeDestinatario', '')
+                          handleChangeEstado(event, values) 
+                          handleChange(event)                                                                  
                         }}
                         onBlur={(event) => {
                           clearCEP(event, values)
                           handleBlur(event)
                         }}>
                         <option value="">--Estado (UF)--</option>
-                        {estados.map((est, i) => (
+                        {estadosDestinatario.map((est, i) => (
                           <option key={i} value={est.sigla}>
                             {est.nome} ({est.sigla})
                           </option>
@@ -395,7 +397,7 @@ const FreightCalculator = () => {
                     Calcular
                   </CalculateButton>
                 </ButtonContainer>
-                {result && <Result data={values}>Teste</Result>}
+                {result && <Result data={values}/>}
               </FormElement>
             </Container>
           )
