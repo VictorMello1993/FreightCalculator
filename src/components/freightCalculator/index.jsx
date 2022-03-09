@@ -23,7 +23,7 @@ const FreightCalculator = () => {
   const [cidadesDestinatario, setCidadeDestinatario] = useState([])
   const [servicos, setServico] = useState([])
 
-  const fazerChamadaAPI = async () => {
+  const setupStates = async () => {
 
     const estados = obterEstados();
     const servicos = obterTiposServico()
@@ -34,7 +34,7 @@ const FreightCalculator = () => {
   }
 
   useEffect(() => {
-    fazerChamadaAPI();
+    setupStates();
   }, []);
 
   const handleChangeEstado = (event, values) => {    
@@ -69,7 +69,7 @@ const FreightCalculator = () => {
     return errors
   }
 
-  const submit = (event, values) => {
+  const submit = (values) => {
     (async () => {
       const {Servicos} = await calcularPrecoFrete(values)      
       const {cServico} = Servicos

@@ -22,7 +22,7 @@ export async function calcularPrecoFrete({ cepRemetente, cepDestinatario, peso, 
 }
 
 export function obterTiposServico(){
-  return dataServicos.servicos.map(({id, codigo, descricao}) => ({
+  return dataServicos.servicos.map(({codigo, descricao}) => ({
     codigo, 
     descricao
   }))
