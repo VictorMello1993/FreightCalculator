@@ -103,7 +103,7 @@ const FreightCalculator = () => {
                 Preencha os dados aqui
               </Title>
               <FormElement onSubmit={(event) => {
-                submit(event, values)
+                submit(values)
                 handleSubmit(event)
               }}
                 method="POST">

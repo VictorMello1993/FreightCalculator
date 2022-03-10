@@ -3,9 +3,11 @@ import * as xml2js from 'xml2js'
 import dataServicos from '../../storage/tipos-servico.json'
 import dataStates from '../../storage/estados-municipios.json'
 
+const BASE_URL = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=';
+
 export async function calcularPrecoFrete({ cepRemetente, cepDestinatario, peso, formato, comprimento, altura, largura, servico, diametro }) {
 
-  const response = await axios.get(`http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=${cepRemetente}&sCepDestino=${cepDestinatario}&nVlPeso=${peso}&nCdFormato=${formato}&nVlComprimento=${comprimento}&nVlAltura=${altura}&nVlLargura=${largura}&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=${servico}&nVlDiametro=${diametro}&StrRetorno=xml&nIndicaCalculo=3`)    
+  const response = await axios.get(`${BASE_URL}${cepRemetente}&sCepDestino=${cepDestinatario}&nVlPeso=${peso}&nCdFormato=${formato}&nVlComprimento=${comprimento}&nVlAltura=${altura}&nVlLargura=${largura}&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=${servico}&nVlDiametro=${diametro}&StrRetorno=xml&nIndicaCalculo=3`)    
 
   let json = {}
 
