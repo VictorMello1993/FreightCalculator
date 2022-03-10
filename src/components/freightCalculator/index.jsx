@@ -3,10 +3,10 @@ import { Input } from 'reactstrap';
 import InputMask from 'react-input-mask';
 import { Formik } from "formik";
 import schema from '../../config/schemaValidation.js'
-import validarCepPorEstado from '../../services/validateCEP/validateCEP'
 import {calcularPrecoFrete, obterCidades, obterEstados, obterTiposServico } from '../../services/api/freight.service'
 import { FieldSet, Title, Container, FormElement, FieldGroup, Field, ErrorFeedback, ButtonContainer, CalculateButton} from './styles';
 import Result from '../resultFreight'
+import { validate } from '../../services/validations/validateCEP';
 
 const FreightCalculator = () => {
 
@@ -55,20 +55,6 @@ const FreightCalculator = () => {
 
   const blockInvalidChar = event => ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault();
 
-  const validate = ({ cepRemetente, cepDestinatario, estadoRemetente, estadoDestinatario }) => {
-    const errors = {}    
-
-    if (cepRemetente && !validarCepPorEstado(cepRemetente, estadoRemetente)) {
-      errors.cepRemetente = 'CEP inválido'
-    }    
-
-    if (cepDestinatario && !validarCepPorEstado(cepDestinatario, estadoDestinatario)) {
-      errors.cepDestinatario = 'CEP inválido'
-    }
-
-    return errors
-  }
-
   const submit = (values) => {
     (async () => {
       const {Servicos} = await calcularPrecoFrete(values)      
@@ -97,7 +83,7 @@ const FreightCalculator = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        validate={validate}
+        validate={(values) => validate(values)}
         validateOnMount        
       >
         {(formik) => {
