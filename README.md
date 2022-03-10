@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Freight Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Screenshot_3](/uploads/6e5c20e2454018db176b8efad7b9f3ba/Screenshot_3.png)
 
-## Available Scripts
+</br>
 
-In the project directory, you can run:
+![Screenshot_4](/uploads/16502f0f56998f3270c9c17722e1e175/Screenshot_4.png)
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O projeto em questão visa calcular o valor do frete e o prazo de entrega (em dias úteis) da encomenda utilizando API dos Correios.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+## Bibliotecas utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* <a href="https://create-react-app.dev/">React</a>
+* <a href="https://reactstrap.github.io/?path=/story/home-installation--page">Reactstrap</a>
+* <a href="https://formik.org/docs/overview">Formik</a>
+* <a href="https://styled-components.com/">Styled components</a>
+* <a href="https://www.npmjs.com/package/yup?activeTab=readme">Yup</a>
+* <a href="https://www.npmjs.com/package/react-input-mask">React Input Mask</a>
+* <a href="https://www.npmjs.com/package/axios">Axios</a>
 
-### `yarn build`
+## Executando o projeto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone o repositório
+```sh
+   git clone https://gitlab.com/pos-fullstack-2022-01/projeto-interfaces-victor-mello.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Instale todas as dependências do projeto
+```sh
+   # Usando npm
+   npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   #Usando yarn
+   yarn
+```
 
-### `yarn eject`
+3. Execute o projeto
+```sh
+   # Usando npm
+   npm run start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   #Usando yarn
+   yarn start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p>OBS: Ao consumir a API, sugiro que instale alguma extensão de desbloqueio do CORS em seu navegador para evitar erros causados pelo bloqueio do CORS, que por definitivo ainda não consegui encontrar alguma maneira de resolvê-lo. Não tenho certeza se isso se trata de erro da própria API, visto que para algumas pessoas o erro não acontecia ao consumir outras API's diferentes do que apliquei no projeto. Já tentei utilizar
+<a href="https://www.npmjs.com/package/correios-brasil">Correios Brasil</a> e <a href="https://www.npmjs.com/package/node-correios">Node Correios<a>, e o erro persistia.</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</br>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   
+    
