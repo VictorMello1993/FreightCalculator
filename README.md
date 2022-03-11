@@ -19,6 +19,7 @@ O projeto em questão visa calcular o valor do frete e o prazo de entrega (em di
 * <a href="https://www.npmjs.com/package/yup?activeTab=readme">Yup</a>
 * <a href="https://www.npmjs.com/package/react-input-mask">React Input Mask</a>
 * <a href="https://www.npmjs.com/package/axios">Axios</a>
+* <a href="https://react-icons.github.io/react-icons/">React Icons</a>
 
 ## Executando o projeto
 
