@@ -18,7 +18,7 @@ const HeaderContent = styled.header `
     align-items: center;    
     font-weight: 800;    
     font-size: 35px;
-    color: #335185;    
+    color: #335185;  
 `
 
 const Icon = styled(BiPackage) `

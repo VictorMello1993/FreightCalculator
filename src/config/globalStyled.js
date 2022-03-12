@@ -12,7 +12,7 @@ const GlobalStyled = createGlobalStyle`
     flex: 1;
     background-color: #fac12f;    
     font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;        
+    box-sizing: border-box;    
   }
 `
 

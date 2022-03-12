@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GlobalStyled from './config/globalStyled';
-import Home from './views/home';
 import './config/plugins'
+import Routers from './routers';
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyled/>
-    <Home/>
+    <Routers/>
   </React.StrictMode>,
   document.getElementById('root')
 );
