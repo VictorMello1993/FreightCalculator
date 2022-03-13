@@ -1,12 +1,11 @@
 import React from "react"
 import { Router, Redirect } from "@reach/router"
+import { isAuthenticated } from "./config/storage";
 
 //views
 import Portal from './views/portal';
 import Admin from './views/admin';
-import { isAuthenticated } from "./config/storage";
-
-const Login = () => <div>Login</div>
+import Login from './views/auth/login';
 
 const PrivateRoute = ({component: Component, ...rest}) => {
   if(!isAuthenticated()){
