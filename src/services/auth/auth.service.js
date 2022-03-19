@@ -1,8 +1,4 @@
-export const authenticatedUser = (values) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('Autenticando')
-      resolve();
-    }, 3000)
-  })
-}
+import http from './../../config/http';
+
+export const authenticatedUser = (values) => http.post('/login', values)
+
