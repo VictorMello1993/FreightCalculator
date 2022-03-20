@@ -5,6 +5,7 @@ import { useFormik } from 'formik'
 import { authenticatedUser } from './../../services/auth/auth.service';
 import { saveToken } from '../../config/storage';
 import { useState } from 'react';
+import http from './../../config/http';
 
 const Login = () => {
   const [error, setError] = useState('')
@@ -18,6 +19,7 @@ const Login = () => {
       try {
         setError('')
         const { data: { token } } = await authenticatedUser(values)
+        http.defaults.headers["authorization"] = `${token.type} ${token.token}`;
         saveToken(token)
         navigate('/admin')
       } catch (error) {
@@ -73,11 +75,7 @@ const Login = () => {
             Submit
           </Button>
         </Form>
-        {error.length > 0 && (
-          <Alert color="danger">
-            {error}
-          </Alert>
-        )}
+        {error.length > 0 && <Alert color="danger">{error}</Alert>}
       </Col>
     </LoginContainer>
   )
