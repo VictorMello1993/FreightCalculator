@@ -6,16 +6,12 @@ import { getToken } from '../../config/storage';
 const Home = () => {
   useEffect(() => {
     (async () => {
-      const {type, token} = getToken()      
-      const getUsers = await http.get('/users', {
-        headers: {
-          authorization: `${type} ${token}`
-        }
-      })
-      console.log('getUsers', getUsers.data)            
-    })()
+      const getUsers = await http.get('/users')
+      console.log('getUsers', getUsers.data)
+    }
+    )()
   }, [])
-  
+
   return (
     <Container>
       <h2>Está é a página privada</h2>

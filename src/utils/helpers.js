@@ -1,3 +1,6 @@
+// import jwt from 'jsonwebtoken'
+import { getToken } from '../config/storage'
+
 export const formatCep = (cep) => {
   return Number(cep.replace(/[^0-9]/g, ''))
 }
@@ -34,4 +37,15 @@ export const rangeCepPorEstado = {
     SC: [88000000, 89999999],
     RS: [90000000, 99999999],
     RR: [69300000, 69399999]
+  }
+
+  //Obtendo as informações do usuário logado pelo token (payload)
+  export const getUserByToken = () => {
+    // const {token} = getToken();
+    
+    // if(token){
+    //   return jwt.decode(token) 
+    // }
+
+    return false
   }
