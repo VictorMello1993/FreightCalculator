@@ -1,5 +1,3 @@
-import axios from 'axios';
-import * as xml2js from 'xml2js'
 import dataServicos from '../../storage/tipos-servico.json'
 import dataStates from '../../storage/estados-municipios.json'
 import http from '../../config/http'
