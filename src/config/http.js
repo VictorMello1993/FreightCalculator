@@ -5,6 +5,7 @@ import {navigate} from '@reach/router'
 const {REACT_APP_API: api} = process.env
 console.log('api', api)
 
+//Criando uma instância única de Axios para todas as requisições que forem realizadas na aplicação
 const http = axios.create({
   baseURL: api
 })

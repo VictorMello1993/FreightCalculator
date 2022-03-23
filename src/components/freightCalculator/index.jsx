@@ -57,13 +57,24 @@ const FreightCalculator = () => {
 
   const submit = (values) => {
     (async () => {
-      const {Servicos} = await calcularPrecoFrete(values)      
-      const {cServico} = Servicos
+     const args = {
+      sCepOrigem: values.cepRemetente,
+      sCepDestino: values.cepDestinatario,
+      nVlPeso: values.peso,
+      nCdFormato: values.formato,
+      nVlComprimento: values.comprimento,
+      nVlAltura: values.altura,
+      nVlLargura: values.largura,
+      nCdServico: [values.servico],
+      nVlDiametro: values.diametro 
+     }
 
-      const [result] = cServico
+     const result = await calcularPrecoFrete(args)
 
-      values.valorFrete = result.Valor[0]
-      values.diasUteis = result.PrazoEntrega[0]      
+     const {Valor, PrazoEntrega} = result.data[0]
+
+      values.valorFrete = Valor
+      values.diasUteis = PrazoEntrega
 
       setResult(result)
     })()
