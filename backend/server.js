@@ -1,7 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const cors = require('cors')
-const { generateHash, generateToken, verifyToken } = require('./helpers')
+const { generateHash, generateToken, verifyToken } = require('./utils/helpers')
 const database = require('./db.json')
 const { calcularPrecoPrazo } = require('correios-brasil')
 
