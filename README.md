@@ -20,6 +20,10 @@ O projeto em questão visa calcular o valor do frete e o prazo de entrega (em di
 * <a href="https://www.npmjs.com/package/react-input-mask">React Input Mask</a>
 * <a href="https://www.npmjs.com/package/axios">Axios</a>
 * <a href="https://react-icons.github.io/react-icons/">React Icons</a>
+* <a href="https://www.npmjs.com/package/correios-brasil">Correios Brasil</a>
+* <a href="https://www.npmjs.com/package/dotenv">Dotenv</a>
+* <a href="https://www.npmjs.com/package/jsonwebtoken">jsonwebtoken</a>
+* <a href="https://www.npmjs.com/package/jwt-decode">jwt-decode</a>
 
 ## Executando o projeto
 
@@ -45,13 +49,6 @@ O projeto em questão visa calcular o valor do frete e o prazo de entrega (em di
    #Usando yarn
    yarn start
 ```
-
-</br>
-
-<p>OBS: Ao consumir a API, sugiro que instale alguma extensão de desbloqueio do CORS em seu navegador para evitar erros causados pelo bloqueio do CORS, que por definitivo ainda não consegui encontrar alguma maneira de resolvê-lo. Não tenho certeza se isso se trata de erro da própria API, visto que para algumas pessoas o erro não acontecia ao consumir outras API's diferentes do que apliquei no projeto. Já tentei utilizar
-<a href="https://www.npmjs.com/package/correios-brasil">Correios Brasil</a> e <a href="https://www.npmjs.com/package/node-correios">Node Correios<a>, e o erro persistia.</p>
-
-</br>
 
 
 
