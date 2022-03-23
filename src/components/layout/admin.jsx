@@ -1,9 +1,8 @@
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, Nav, NavbarText, NavItem, NavLink } from 'reactstrap';
 import { getUserByToken } from '../../utils/helpers';
 
-getUserByToken()
-
 const LayoutAdmin = ({children}) => {
+  const {email} = getUserByToken()
   return (
     <div>
       <Navbar
@@ -27,7 +26,7 @@ const LayoutAdmin = ({children}) => {
             </NavItem> */}
           </Nav>
           <NavbarText>
-            {JSON.stringify(getUserByToken())}            
+            {email}            
           </NavbarText>
         </Collapse>
       </Navbar>
