@@ -50,7 +50,7 @@ O projeto em questão visa calcular o valor do frete e o prazo de entrega (em di
    yarn start
 ```
 
-4. Execute o projeto back-end. Para isso, é preciso navegar para uma pasta onde está toda a implementação do back-end e rodar o comando abaixo:
+4. Execute o projeto back-end. Para isso, é preciso navegar para a pasta raíz onde está toda a implementação do back-end e rodar o comando abaixo:
 ```sh
    # Usando npm
    npm run dev
