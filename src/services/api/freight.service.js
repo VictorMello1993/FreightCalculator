@@ -4,26 +4,6 @@ import dataServicos from '../../storage/tipos-servico.json'
 import dataStates from '../../storage/estados-municipios.json'
 import http from '../../config/http'
 
-// const BASE_URL = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=';
-
-// export async function calcularPrecoFrete({ cepRemetente, cepDestinatario, peso, formato, comprimento, altura, largura, servico, diametro }) {
-
-//   const response = await axios.get(`${BASE_URL}${cepRemetente}&sCepDestino=${cepDestinatario}&nVlPeso=${peso}&nCdFormato=${formato}&nVlComprimento=${comprimento}&nVlAltura=${altura}&nVlLargura=${largura}&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=${servico}&nVlDiametro=${diametro}&StrRetorno=xml&nIndicaCalculo=3`)    
-
-//   let json = {}
-
-//   xml2js.parseString(response.data, (err, res) => {
-
-//     if(err){
-//       throw new Error(err.message)
-//     }
-
-//     json = res
-//   })      
-
-//   return json
-// }
-
 export function calcularPrecoFrete(values){
   return http.post('/', values)
 }
