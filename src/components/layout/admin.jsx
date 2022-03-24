@@ -17,16 +17,22 @@ import {
 
 import { getUserByToken } from '../../utils/helpers';
 import styled from 'styled-components';
-import { Link, useLocation } from "@reach/router";
+import { Link, navigate, useLocation } from "@reach/router";
+import { removeToken } from '../../config/storage';
 
-const LayoutAdmin = ({ children }) => {
-  const {pathname} = useLocation()
+const LayoutAdmin = ({ children }) => {  
   const [user] = useState(getUserByToken() || {})
   const [openMenu, setOpenMenu] = useState(false)
 
   const pathDefault = '/admin'
   
   const defineTo = (path) => path === '/' ? pathDefault : pathDefault + path
+
+  const logout = () => {
+    removeToken()
+    navigate('/login')
+  }
+
   return (
     <Admin>
       <Menu>
@@ -54,11 +60,11 @@ const LayoutAdmin = ({ children }) => {
                       {user?.name}
                     </DropdownToggle>
                     <DropdownMenu end>
-                      <DropdownItem>
+                      <DropdownItem tag={Link} to={defineTo("/perfil")}>
                         Editar perfil
                       </DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem>
+                      <DropdownItem onClick={logout}>
                         Sair
                       </DropdownItem>
                     </DropdownMenu>
