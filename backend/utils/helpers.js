@@ -4,7 +4,7 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-const JWT_EXPIRES_IN = 60 //1min
+const JWT_EXPIRES_IN = 3600 //1h
 const {SECRET_KEY: secret} = process.env;
 
 exports.generateHash = async (password) => {
