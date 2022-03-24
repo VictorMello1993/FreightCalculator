@@ -18,18 +18,16 @@ const PrivateRoute = ({component: Component, ...rest}) => {
 //Se o usuário estiver na página login e não tiver autenticado, não redirecionar para lugar nenhum, o usuário fica na página de login
 const Authenticated = ({component: Component, ...rest}) => {
   if(isAuthenticated()){
-    return <h1>Vá para a página autenticada</h1>
-    // return <Redirect to="/admin" noThrow />
+    return <Redirect to="/admin" noThrow/>    
   }
-  return <Component {...rest}/>
+  return <Component {...rest}/>    
 }
 
 const Routers = () => {  
   return (
     <Router>
       <Portal path="/*" />
-      <PrivateRoute path="/admin/*" component={Admin}/>
-      {/* <Login path="/login" /> */}
+      <PrivateRoute path="/admin/*" component={Admin}/>      
       <Authenticated path="/login" component={Login} />
     </Router>
   )
