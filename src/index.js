@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import GlobalStyled from './config/globalStyled';
 import './config/plugins'
 import Routers from './routers';
+import {Provider} from 'react-redux'
+import store from './store';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <GlobalStyled/>
     <Routers/>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
