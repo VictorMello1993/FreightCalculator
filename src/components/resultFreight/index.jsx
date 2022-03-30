@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Result = ({data}) => {  
+const Result = ({data: {valorFrete, diasUteis}}) => {  
   return(
     <ResultContainer>   
-      <Item>O valor do frete é de R${data?.valorFrete} e o prazo de entrega é {data?.diasUteis} dias úteis.</Item>      
+      <Item>O valor do frete é de R${valorFrete} e o prazo de entrega é {diasUteis} dias úteis.</Item>      
     </ResultContainer>
   )    
 }
