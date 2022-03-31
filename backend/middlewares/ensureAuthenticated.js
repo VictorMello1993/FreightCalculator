@@ -4,7 +4,7 @@ exports.ensureAuthenticated = async(req, res, next) => {
   const authHeader = req.headers.authorization
 
   if (!authHeader) {
-    return res.status(401).json('Usuário não está autorizado')
+    res.status(401).json('Usuário não está autorizado')
   }
 
   const parts = authHeader?.split(' ')
