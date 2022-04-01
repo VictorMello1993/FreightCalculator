@@ -39,8 +39,8 @@ const Login = () => {
   //Função customizada para tratamento de erros do Formik
   const getFieldProps = (fieldName) => ({
     ...formik.getFieldProps(fieldName),
-    // isValid: formik.touched[fieldName] && !formik.errors[fieldName],
-    // isInvalid: formik.touched[fieldName] && !!formik.errors[fieldName],
+    isValid: formik.touched[fieldName] && !formik.errors[fieldName],
+    isInvalid: formik.touched[fieldName] && !!formik.errors[fieldName],
     error: formik.errors[fieldName]
   })
 
@@ -63,9 +63,10 @@ const Login = () => {
           />
           <Button 
             block
+            outline
             type="submit"            
-            className='mb-4'
-            loading={formik.isValidating || formik.isSubmitting}
+            className='mb-4'            
+            loading={formik.isValid || formik.isSubmitting}
             disabled={!formik.isValid || formik.isSubmitting}>
             Entrar
           </Button>

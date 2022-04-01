@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import { Button as ButtonBootstrap, Spinner } from 'reactstrap';
 
 export const Button = ({ children, loading = false, ...otheProps } = {}) => {
+  console.log('otheProps', otheProps)
   return (
     <ButtonStyled {...otheProps}>
-      <>
-        {loading ? <Spinner>Carregando...</Spinner> : children}
-      </>
+      
+        {/* {loading ? <Spinner>Carregando...</Spinner> : children} */}
+        {children}
+      
     </ButtonStyled>
   )
 }
