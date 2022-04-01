@@ -4,12 +4,9 @@ import { Button as ButtonBootstrap, Spinner } from 'reactstrap';
 export const Button = ({ children, loading = false, ...otheProps } = {}) => {
   return (
     <ButtonStyled {...otheProps}>
-      {loading && (
-        <Spinner animation="border" role="status" size="sm" className="mr-2">
-          <span className='sr-only'>Carregando...</span>
-        </Spinner>
-      )}
-      {children}
+      <>
+        {loading ? <Spinner>Carregando...</Spinner> : children}
+      </>
     </ButtonStyled>
   )
 }

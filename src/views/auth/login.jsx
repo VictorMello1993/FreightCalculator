@@ -61,9 +61,9 @@ const Login = () => {
             type="password"
             placeholder="Informe sua senha de acesso"
           />
-          <Button block
-            type="submit"
-            color='primary'
+          <Button 
+            block
+            type="submit"            
             className='mb-4'
             loading={formik.isValidating || formik.isSubmitting}
             disabled={!formik.isValid || formik.isSubmitting}>
