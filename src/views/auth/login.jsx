@@ -21,7 +21,7 @@ const Login = () => {
     validationSchema: yup.object().shape({
       email: yup.string().required('Preencha o e-email').email('Preencha um e-mail válido.'),
       password: yup.string().required('Preencha uma senha válida')
-                  //  .min(8, 'Preencha senha com no mínimo 8 caracteres')
+                   .min(5, 'Preencha senha com no mínimo 5 caracteres')
     }),
     onSubmit: async (values) => {
       try {
