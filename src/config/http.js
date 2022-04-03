@@ -1,5 +1,5 @@
 import axios from "axios"
-import { removeToken, getToken } from "./storage"
+import { removeToken, getAuth } from "./storage"
 import {navigate} from '@reach/router'
 
 const {REACT_APP_API: api} = process.env
@@ -12,9 +12,9 @@ const http = axios.create({
 
 http.defaults.headers['content-type'] = 'application/json'
 
-if(getToken()){
-  const {token, type} = getToken()
-  http.defaults.headers['authorization'] = `${type} ${token}`
+if(getAuth()){
+  const {token} = getAuth()
+  http.defaults.headers['authorization'] = token
 }
 
 //Interceptando a resposta caso o token expire

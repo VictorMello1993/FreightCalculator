@@ -1,4 +1,4 @@
-import { getToken } from '../config/storage'
+import { getAuth } from '../config/storage'
 import jwt_decode from 'jwt-decode'
 
 export const formatCep = (cep) => {
@@ -41,7 +41,7 @@ export const rangeCepPorEstado = {
 
   //Obtendo as informações do usuário logado pelo token (payload)
   export const getUserByToken = () => {
-    const {token} = getToken();
+    const {token} = getAuth();
     
     if(token){
       return jwt_decode(token)

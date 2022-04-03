@@ -1,13 +1,13 @@
 const {REACT_APP_KEY_STORAGE: keyStorage} = process.env
 
-export const saveToken = (token) => localStorage.setItem(keyStorage, JSON.stringify(token))
+export const saveAuth = (data) => localStorage.setItem(keyStorage, JSON.stringify(data))
 
-export const getToken = () => JSON.parse(localStorage.getItem(keyStorage)) 
+export const getAuth = () => JSON.parse(localStorage.getItem(keyStorage)) 
 
 export const removeToken = () => localStorage.removeItem(keyStorage)
 
 export const cleanToken = () => localStorage.clear()
 
-export const hasToken= () => getToken() !== null
+export const hasToken= () => getAuth() !== null
 
 export const isAuthenticated = () => hasToken()

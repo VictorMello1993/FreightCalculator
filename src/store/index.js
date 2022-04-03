@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux"
 import {composeWithDevTools} from 'redux-devtools-extension'
 import UserReducer from './user/reducer'
 import StudentReducer from './student/reducer'
+import thunk from "redux-thunk"
 
 //Reducers
 const reducers = combineReducers({
@@ -10,7 +11,7 @@ const reducers = combineReducers({
 })
 
 //Middlewares
-const middlewares = []
+const middlewares = [thunk]
 
 // Compositions
 const compose = composeWithDevTools(applyMiddleware(...middlewares))  
