@@ -27,8 +27,8 @@ const Routers = () => {
   return (
     <Router>
       <Portal path="/*" />
-      <PrivateRoute path="/admin/*" component={Admin}/>      
       <Authenticated path="/login" component={Login} />
+      <PrivateRoute path="/admin/*" component={Admin}/>      
     </Router>
   )
 }

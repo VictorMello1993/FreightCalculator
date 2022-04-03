@@ -3,15 +3,15 @@ import LayoutAdmin from '../../components/layout/admin';
 
 // Rotas de views
 import Home from './home';
-import Quotes from './quotes';
 import Profile from './profile';
+import FreightList from './quotes';
 
 const Admin = () => {
   return (
     <LayoutAdmin>
       <Router>
-        <Home path="/" />
-        <Quotes path="cotacoes" />
+        <Home path="/" />    
+        <FreightList path="fretes"/>
         <Profile path="perfil" />
       </Router>
     </LayoutAdmin>

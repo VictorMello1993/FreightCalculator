@@ -1,7 +1,7 @@
-const Quotes = () => {
+const FreightList = () => {
   return (
-    <h2>Cotações</h2>
+    <h2>Listagem de fretes</h2>
   )
 }
 
-export default Quotes
+export default FreightList
