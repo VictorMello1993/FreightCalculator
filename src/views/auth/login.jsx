@@ -1,46 +1,47 @@
-import { Container, Col, Alert } from 'reactstrap';
+import { Container, Col } from 'reactstrap';
 import { navigate } from "@reach/router"
 import styled from 'styled-components';
 import { useFormik } from 'formik'
 import { authenticatedUser } from './../../services/auth/auth.service';
-import { saveToken } from '../../config/storage';
+import { saveAuth } from '../../config/storage';
 import { useState } from 'react';
 import http from './../../config/http';
 import * as yup from 'yup'
-import { FormField } from '../../components/formField';
+import { FormField } from '../../components/formField/login';
 import { Button } from '../../components/button';
 import { LoginAction } from '../../store/user/action';
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
-  const [error] = useState('')
+  const [error, setError] = useState('')
   const dispatch = useDispatch()
-  
+
   const formik = useFormik({
     initialValues: {
-      email: 'victorsmello93@gmail.com',
-      password: '12341234',
+      email: '',
+      password: '',
     },
     validationSchema: yup.object().shape({
       email: yup.string().required('Preencha o e-email').email('Preencha um e-mail válido.'),
       password: yup.string().required('Preencha uma senha válida')
-                   .min(5, 'Preencha senha com no mínimo 5 caracteres')
+        .min(5, 'Preencha senha com no mínimo 5 caracteres')
     }),
 
     //Autenticação com Redux
-    onSubmit: (values) => dispatch(LoginAction(values)),
+    // onSubmit: (values) => dispatch(LoginAction(values)),
 
     // Autenticação sem Redux (direto no componente)
-      // try {
-      //   setError('')
-      //   const { data: { token } } = await authenticatedUser(values)
-      //   http.defaults.headers["authorization"] = `${token.type} ${token.token}`;
-      //   saveToken(token)
-      //   navigate('/admin')
-      // } catch (error) {
-      //   setError('Erro ao tentar fazer o login, verifique seu e-mail e/ou senha')
-      // }
-    // }
+    onSubmit: async (values) => {
+      try {
+        setError('')
+        const { data: { token } } = await authenticatedUser(values)
+        http.defaults.headers["authorization"] = `${token.type} ${token.token}`;
+        saveAuth(token)
+        navigate('/admin')
+      } catch (error) {
+        setError('Erro ao tentar fazer o login, verifique seu e-mail e/ou senha')
+      }
+    }    
   })
 
   //Função customizada para tratamento de erros do Formik
@@ -68,17 +69,16 @@ const Login = () => {
             type="password"
             placeholder="Informe sua senha de acesso"
           />
-          <Button 
+          <Button
             block
             outline
-            type="submit"            
-            className='mb-4'            
+            type="submit"
+            className='mb-4'
             loading={formik.isValid || formik.isSubmitting}
             disabled={!formik.isValid || formik.isSubmitting}>
             Entrar
           </Button>
         </Form>
-        {error.length > 0 && <Alert color="danger">{error}</Alert>}
       </Col>
     </LoginContainer>
   )
