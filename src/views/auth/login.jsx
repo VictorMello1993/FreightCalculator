@@ -1,11 +1,11 @@
 import { Container, Col, Alert } from 'reactstrap';
-// import { navigate } from "@reach/router"
+import { navigate } from "@reach/router"
 import styled from 'styled-components';
 import { useFormik } from 'formik'
-// import { authenticatedUser } from './../../services/auth/auth.service';
-// import { saveToken } from '../../config/storage';
+import { authenticatedUser } from './../../services/auth/auth.service';
+import { saveToken } from '../../config/storage';
 import { useState } from 'react';
-// import http from './../../config/http';
+import http from './../../config/http';
 import * as yup from 'yup'
 import { FormField } from '../../components/formField';
 import { Button } from '../../components/button';
@@ -26,6 +26,7 @@ const Login = () => {
       password: yup.string().required('Preencha uma senha válida')
                    .min(5, 'Preencha senha com no mínimo 5 caracteres')
     }),
+
     //Autenticação com Redux
     onSubmit: (values) => dispatch(LoginAction(values)),
 
@@ -88,6 +89,8 @@ export default Login
 const Form = styled.form`
   background-color: #fff;
   padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 .2em #000;
 `;
 
 const LoginContainer = styled(Container)`
