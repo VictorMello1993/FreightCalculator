@@ -8,7 +8,6 @@ import {
   Nav,
   Navbar,
   NavbarBrand,
-  NavbarText,
   NavbarToggler,
   NavItem,
   NavLink,
@@ -17,7 +16,7 @@ import {
 
 import { getUserByToken } from '../../utils/helpers';
 import styled from 'styled-components';
-import { Link, navigate, useLocation } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import { removeToken } from '../../config/storage';
 
 const LayoutAdmin = ({ children }) => {  

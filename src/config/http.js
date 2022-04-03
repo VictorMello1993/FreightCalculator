@@ -2,7 +2,7 @@ import axios from "axios"
 import { removeToken, getAuth } from "./storage"
 import {navigate} from '@reach/router'
 
-const {REACT_APP_API: api} = process.env
+const {REACT_APP_API_STRAPI: api} = process.env
 console.log('api', api)
 
 //Criando uma instância única de Axios para todas as requisições que forem realizadas na aplicação

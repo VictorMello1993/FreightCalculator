@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Container } from '../../components/freightCalculator/styles';
 import CompA from '../../components/home/compA';
 import CompB from '../../components/home/compB';
-import http from '../../config/http'
-import { getToken } from '../../config/storage';
 import styled from 'styled-components';
 import { Button } from 'reactstrap';
 
