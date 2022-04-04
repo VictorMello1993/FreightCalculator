@@ -4,7 +4,7 @@ import FreightCalculator from '../../components/freightCalculator';
 const Home = () => {
   return (
     <Container>
-      <FreightCalculator/>
+      <FreightCalculator />
     </Container>
   )
 }

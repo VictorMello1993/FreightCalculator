@@ -18,6 +18,7 @@ import { getUserByToken } from '../../utils/helpers';
 import styled from 'styled-components';
 import { Link, navigate } from "@reach/router";
 import { removeToken } from '../../config/storage';
+import Footer from './footer';
 
 const LayoutAdmin = ({ children }) => {  
   const [user] = useState(getUserByToken() || {})
@@ -77,6 +78,7 @@ const LayoutAdmin = ({ children }) => {
           <main>{children}</main>
         </Container>
       </Main>
+      <Footer/>      
     </Admin>
   )
 }

@@ -32,7 +32,8 @@ export const Title = styled.div`
 
 export const Container = styled.div`
   background-color: #fafafa;    
-  border-radius: 4px 4px 0 0;  
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 0 .2em #000;
 `
 
 export const FieldGroup = styled(InputGroup)`    
