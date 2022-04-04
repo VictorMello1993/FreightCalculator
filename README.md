@@ -58,9 +58,3 @@ O projeto em questão visa calcular o valor do frete e o prazo de entrega (em di
    #Usando yarn
    yarn dev
 ```
-## Possíveis melhorias
-* [] Construir a página de perfil
-* [] Construir a página de listagem de fretes por usuário logado
-* [] Centralizar a validação do CEP em um esquema de validação do Yup
-* [] Implementar "Esqueci a minha senha"
-* [] Implementar sign up para criar novos usuários e salvar o token de cada um deles no local storage"
