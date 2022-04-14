@@ -41,14 +41,9 @@ const LayoutAdmin = ({ children }) => {
             <NavbarBrand href="/">Administrador</NavbarBrand>
             <NavbarToggler onClick={() => setOpenMenu(!openMenu)} />
             <Nav navbar>
-              <NavItem>
-                {/* tag => propriedade de um componente que herda as propriedades de outros componentes
-                No caso, NavLink está herdando as propriedades do componente Link do Reach Router */}
+              <NavItem>                
                 <NavLink tag={Link} to={defineTo("/")}>Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to={defineTo("/fretes")}>Listagem de fretes</NavLink>
-              </NavItem>
+              </NavItem>              
             </Nav>
             <CollapseCustom navbar isOpen={openMenu}>
               <Nav navbar>                

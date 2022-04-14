@@ -5,11 +5,13 @@ exports.ensureAuthenticated = async(req, res, next) => {
 
   if (!authHeader) {
     res.status(401).json('Usuário não está autorizado')
+    return
   }
 
   const parts = authHeader?.split(' ')
   if (parts?.length !== 2) {
     res.status(401).json('Tipo de autorização inválida')
+    return
   }
 
   const [schema, token] = parts
@@ -19,6 +21,7 @@ exports.ensureAuthenticated = async(req, res, next) => {
   
   if (!verifyToken(token)) {
     res.status(401).json('Token inválido')
+    return
   }
 
   next()

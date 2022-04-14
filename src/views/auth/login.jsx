@@ -1,4 +1,4 @@
-import { Container, Col } from 'reactstrap';
+import { Container, Col, Alert } from 'reactstrap';
 import { navigate } from "@reach/router"
 import styled from 'styled-components';
 import { useFormik } from 'formik'
@@ -38,7 +38,7 @@ const Login = () => {
         http.defaults.headers["authorization"] = `${token.type} ${token.token}`;
         saveAuth(token)
         navigate('/admin')
-      } catch (error) {
+      } catch (error) {        
         setError('Erro ao tentar fazer o login, verifique seu e-mail e/ou senha')
       }
     }    
@@ -53,8 +53,7 @@ const Login = () => {
   })
 
   return (
-    <LoginContainer>
-      {/*Utilizando grid (Col) para responsividade  */}
+    <LoginContainer>      
       <Col sm={12} md={6} lg={3}>
         <Form inline onSubmit={formik.handleSubmit}>
           <FormField
@@ -67,7 +66,7 @@ const Login = () => {
             {...getFieldProps('password')}
             label="Senha"
             type="password"
-            placeholder="Informe sua senha de acesso"
+            placeholder="Informe sua senha de acesso"            
           />
           <Button
             block
@@ -79,6 +78,7 @@ const Login = () => {
             Entrar
           </Button>
         </Form>
+        {error.length > 0 && <Alert color="danger">{error}</Alert>}
       </Col>
     </LoginContainer>
   )

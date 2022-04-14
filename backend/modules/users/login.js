@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
   }
 
   if (!(await bcrypt.compare(password, user.password))) {
-    return res.status(400).json({ message: 'Usuário ou senha inválidos' })
+    res.status(400).json({ message: 'Usuário ou senha inválidos' })
   }
 
   //Ocultando a propriedade password, pois essa informação não pode ser exposta no token
