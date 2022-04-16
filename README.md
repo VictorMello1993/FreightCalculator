@@ -24,6 +24,7 @@ O projeto em questão visa calcular o valor do frete e o prazo de entrega (em di
 * <a href="https://www.npmjs.com/package/dotenv">Dotenv</a>
 * <a href="https://www.npmjs.com/package/jsonwebtoken">jsonwebtoken</a>
 * <a href="https://www.npmjs.com/package/jwt-decode">jwt-decode</a>
+* <a href="https://www.npmjs.com/package/nodemon">Nodemon</a>
 
 ## Executando o projeto
 
