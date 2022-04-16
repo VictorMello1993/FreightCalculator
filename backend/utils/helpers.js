@@ -12,10 +12,10 @@ exports.generateHash = async (password) => {
   return bcrypt.hashSync(password, passEncode)
 }
 
-exports.generateToken = (payload) => {
+exports.generateToken = ({email, name}) => {
   return {
     type: 'Bearer',
-    token: jwt.sign({...payload}, secret, {
+    token: jwt.sign({email, name}, secret, {
       expiresIn: parseInt(JWT_EXPIRES_IN)
     })
   }

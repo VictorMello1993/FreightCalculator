@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {      
+      "request": "attach",
+      "name": "Backend - Freight",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/**/*.js",        
+      ],
+      "protocol": "inspector",
+      "restart": true      
+    }
+  ]
+}
