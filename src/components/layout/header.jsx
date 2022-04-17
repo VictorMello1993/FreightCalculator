@@ -1,16 +1,23 @@
 import styled from 'styled-components';
 import { BiPackage } from "react-icons/bi";
+import { Link, navigate } from '@reach/router';
+import LoginLink from '../loginLink/header';
 
 const Header = () => {
-  return (    
-    <HeaderContent>
-      <Icon/>
-      FREIGHT CALCULATOR
-    </HeaderContent>    
+  return (
+    <HeaderContainer>
+      <BoxIcon>
+        <Icon />
+        FREIGHT CALCULATOR
+      </BoxIcon>
+      <BoxNav>
+        <LoginLink tag={Link} to="/login" onClick={() => navigate('/login')}/>        
+      </BoxNav>
+    </HeaderContainer>
   )
 }
 
-const HeaderContent = styled.header `
+const HeaderContainer = styled.header`
     padding: 25px;    
     text-align: center;
     display: flex;
@@ -21,9 +28,17 @@ const HeaderContent = styled.header `
     color: #335185;  
 `
 
-const Icon = styled(BiPackage) `
+const Icon = styled(BiPackage)`
   font-size: 60px;
   color: #335185;
 `
 
-export default Header
+const BoxNav = styled.div`
+  margin-left: 0 auto;
+`
+
+const BoxIcon = styled.div`
+  flex: 1;
+`
+
+export default Header;
